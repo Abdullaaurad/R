@@ -1,0 +1,38 @@
+{
+  // Path to R executable (change this to match your system)
+  "r.rterm.windows": "C:\\Program Files\\R\\R-4.3.1\\bin\\R.exe",
+  
+  // Path to Rscript executable (for running scripts)
+  "r.rpath.windows": "C:\\Program Files\\R\\R-4.3.1\\bin\\Rscript.exe",
+
+  // Bracketed paste mode, recommended for proper input handling
+  "r.bracketedPaste": true,
+
+  // Use active terminal for running R commands
+  "r.alwaysUseActiveTerminal": true,
+
+  // Enable R session watcher for better interactivity
+  "r.sessionWatcher": true,
+
+  // Debugging: show debug information (set to false for normal use)
+  "r.lsp.debug": false,
+
+  // Search and include paths (adjust to include your R project or script folders)
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true
+  },
+
+  // RLint (Optional) - Enable linting for R files
+  "r.linting.enabled": true,
+  "r.linting.lintr.executable": "lintr",
+
+  // Code formatting (Optional) - Specify styler for R code formatting
+  "r.formatting.style": "styler",
+  
+  // Output options
+  "r.rmarkdown.knit.silent": false,
+  "r.rmarkdown.external": false
+}

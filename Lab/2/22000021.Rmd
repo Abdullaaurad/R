@@ -1,0 +1,120 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.16.6
+  kernelspec:
+    display_name: R
+    language: R
+    name: ir
+---
+
+```{r}
+heart_data <- read.csv("heart.csv")
+```
+
+```{r}
+count <- 0
+for(i in 1:nrow(heart_data)){
+    count <- count + 1
+    }
+print(paste("Number of records: ", count))
+```
+
+```{r}
+min_val <- min(heart_data$RestingBP)
+max_val <- max(heart_data$RestingBP)
+mean_val <- mean(heart_data$RestingBP)
+summary <- paste("Min:", min_val, "Max:", max_val, "Mean:", mean_val)
+print(summary)
+```
+
+```{r}
+high_bp <- 0
+for(bp in heart_data$RestingBP) {
+    if(bp > mean_val) {
+        high_bp <- high_bp + 1
+    }
+}
+print(paste("Patients with Resting BP higher than mean: ", high_bp))
+```
+
+```{r}
+chest_pain_types <- c()
+for(pain_type in heart_data$ChestPainType) {
+    if(!(pain_type %in% chest_pain_types)) {
+        chest_pain_types <- c(chest_pain_types, pain_type)
+    }
+}
+print(chest_pain_types)
+```
+
+```{r}
+count <- 0
+female_high <- c()
+for(i in 1:nrow(heart_data)) {
+    if(heart_data$Sex[i] == "F" && heart_data$RestingBP[i] > 140) {
+        female_high <- c(female_high, heart_data$Age[i])
+        count <- count + 1
+        if(count == 10) break
+    }
+}
+print(female_high)
+```
+
+```{r}
+analyze_row <- function(row) {
+    cat("Age:", row$Age, "\n")
+    cat("Sex:", row$Sex, "\n")
+    cat("ChestPainType:", row$ChestPainType, "\n")
+    cat("RestingBP:", row$RestingBP, "\n")
+    if(row$Cholesterol < 200) {
+        cat("Cholesterol Level: Low\n")
+    } else {
+        cat("Cholesterol Level: High\n")
+    }
+    cat("\n")
+}
+```
+
+```{r}
+analyze_row(heart_data[50,])
+```
+
+```{r}
+cities <- c("Colombo", "Kandy", "Galle", "Anuradhapura", "Trincomalee", "Jaffna")
+```
+
+```{r}
+population <- c(580000, 450000, 330000, 380000, 280000, 310000)
+```
+
+```{r}
+data <- data.frame(City = cities, Population = population)
+
+```
+
+```{r}
+head(data)
+```
+
+```{r}
+pie(population, labels = cities, col = rainbow(length(cities)), main = "City
+Population")
+```
+
+```{r}
+percentages <- round(population / sum(population) * 100)
+labels <- paste(percentages, "%", sep = "")
+pie(population, labels = labels, col = rainbow(length(cities)), main = "City
+Population")
+```
+
+```{r}
+years <- c(2015, 2016, 2017, 2018, 2019)
+income <- c(1320000, 1500000, 2002000, 1980000, 1520000)
+barplot(income, names.arg = years, col = "red", border = "blue", main = "Income", ylab = "Yearly Income", xlab = "Year",ylim = c(0, max(income) * 1.1))
+```
